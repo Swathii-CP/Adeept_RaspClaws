@@ -92,7 +92,7 @@ for x in range(1,4):
 		break
 
 for x in range(1,4):
-	if os.system("sudo pip3 install opencv-contrib-python==3.4.3.18") == 0:
+	if os.system("sudo pip3 install opencv-contrib-python==3.4") == 0:
 		break
 
 for x in range(1,4):
@@ -113,7 +113,7 @@ except:
 	pass
 
 try:
-	os.system("cd //home/pi/create_ap && sudo make install")
+	os.system("cd //home/hexapod/create_ap && sudo make install")
 except:
 	pass
 
@@ -122,17 +122,17 @@ for x in range(1,4):
 		break
 
 try:
-	os.system('sudo touch //home/pi/startup.sh')
-	with open("//home/pi/startup.sh",'w') as file_to_write:
+	os.system('sudo touch //home/hexapod/startup.sh')
+	with open("//home/hexapod/startup.sh",'w') as file_to_write:
 		#you can choose how to control the robot
 		file_to_write.write("#!/bin/sh\nsudo python3 " + thisPath + "/server/webServer.py")
 		# file_to_write.write("#!/bin/sh\nsudo python3 " + thisPath + "/server/server.py")
 except:
 	pass
 
-os.system('sudo chmod 777 //home/pi/startup.sh')
+os.system('sudo chmod 777 //home/hexapod/startup.sh')
 
-replace_num('/etc/rc.local','fi','fi\n//home/pi/startup.sh start')
+replace_num('/etc/rc.local','fi','fi\n//home/hexapod/startup.sh start')
 
 try: #fix conflict with onboard Raspberry Pi audio
 	os.system('sudo touch /etc/modprobe.d/snd-blacklist.conf')
